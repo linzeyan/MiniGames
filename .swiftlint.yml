@@ -1,0 +1,36 @@
+included:
+  - SmallGame
+  - Tests
+
+opt_in_rules:
+  - empty_count
+  - closure_spacing
+  - sorted_first_last
+
+line_length:
+  warning: 120
+  error: 160
+
+# Game/math code: coordinates and time as x/y/t (and velocity components)
+# are clearer than spelled-out names.
+identifier_name:
+  min_length: 2
+  excluded: [x, y, t, vx, vy, dx, dy]
+
+# "T" is the per-scene tuning-constants namespace (see ARCHITECTURE.md).
+type_name:
+  excluded: [T]
+
+# SKScene classes carry setup + HUD + input + physics; 250 is too tight
+# for a complete mini-game scene, 320 still flags real bloat.
+type_body_length:
+  warning: 320
+  error: 450
+
+large_tuple:
+  warning: 3
+  error: 4
+
+# Rules enums nest a state-machine struct with its own Outcome enum.
+nesting:
+  type_level: 2
