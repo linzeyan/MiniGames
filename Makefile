@@ -61,7 +61,8 @@ test: generate ## Run unit tests (XCTest)
 
 run: build ## Build, then install & launch on the iPhone simulator
 	@xcrun simctl boot "$(SIMULATOR)" 2>/dev/null || true
-	open -a Simulator
+	@# Xcode 27 replaced Simulator.app with DeviceHub.app; `open -a Simulator` no longer resolves.
+	open -a DeviceHub
 	xcrun simctl install "$(SIMULATOR)" "$(APP)"
 	xcrun simctl launch "$(SIMULATOR)" $(BUNDLE_ID)
 

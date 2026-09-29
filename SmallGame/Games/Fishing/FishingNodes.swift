@@ -70,4 +70,17 @@ enum FishingStyle {
         boat.lineWidth = 2
         return boat
     }
+
+    /// Fishing rod from the fisher's hand to the tip the line hangs from.
+    static func makeRod(from hand: CGPoint, to tip: CGPoint) -> SKShapeNode {
+        let path = CGMutablePath()
+        path.move(to: hand)
+        path.addLine(to: tip)
+        let rod = SKShapeNode(path: path)
+        rod.strokeColor = UIColor(red: 0.4, green: 0.25, blue: 0.13, alpha: 1) // the boat's trim
+        rod.lineWidth = 3
+        rod.lineCap = .round
+        rod.zPosition = 3 // held in front of the fisher (2)
+        return rod
+    }
 }

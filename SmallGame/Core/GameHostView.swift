@@ -84,6 +84,7 @@ struct GameHostView: View {
                 showInstructions = false
             }
             .buttonStyle(.borderedProminent)
+            .foregroundStyle(game.accentColors[1]) // dark label on the white pill
         }
     }
 
@@ -116,6 +117,7 @@ struct GameHostView: View {
                 isPaused = false
             }
             .buttonStyle(.borderedProminent)
+            .foregroundStyle(game.accentColors[1]) // dark label on the white pill
             Button("common.back_to_menu") { dismiss() }
         }
     }
@@ -135,6 +137,7 @@ struct GameHostView: View {
                 scene?.restart()
             }
             .buttonStyle(.borderedProminent)
+            .foregroundStyle(game.accentColors[1]) // dark label on the white pill
             Button("common.back_to_menu") { dismiss() }
         }
     }
@@ -148,7 +151,20 @@ struct GameHostView: View {
                 content()
             }
             .padding(32)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20))
+            .foregroundStyle(.white)
+            .tint(.white)
+            .fontDesign(.rounded)
+            // The game's own menu-card gradient: a system material sheet read
+            // as an iOS alert sitting on top of the game, not part of it.
+            .background(
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(LinearGradient(colors: game.accentColors,
+                                         startPoint: .topLeading, endPoint: .bottomTrailing))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 22)
+                    .stroke(.white.opacity(0.18), lineWidth: 1)
+            )
         }
     }
 }

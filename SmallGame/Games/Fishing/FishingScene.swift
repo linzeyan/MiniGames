@@ -36,7 +36,11 @@ final class FishingScene: MiniGameScene {
     private var rng = SeededRandom(seed: UInt64.random(in: 1...UInt64.max))
 
     private var waterTop: CGFloat { size.height * T.waterLine }
-    private var rodTip: CGPoint { CGPoint(x: size.width / 2, y: waterTop + 40) }
+    /// The rod leans from the fisher's right hand out past his hat brim (with
+    /// no rod, the idle hook sat on his head). The line leaves from its tip;
+    /// the idle hook dangles below it, where casts start and reels end.
+    private var rodTip: CGPoint { CGPoint(x: size.width / 2 + 44, y: waterTop + 60) }
+    private var hookRest: CGPoint { CGPoint(x: rodTip.x, y: rodTip.y - 18) }
 
     override func didMove(to view: SKView) {
         backgroundColor = UIColor(red: 0.55, green: 0.78, blue: 0.92, alpha: 1)
@@ -62,13 +66,11 @@ final class FishingScene: MiniGameScene {
     }
 
     private func setUp() {
-        // Water body below the waterline.
-        let water = SKSpriteNode(color: UIColor(red: 0.1, green: 0.3, blue: 0.55, alpha: 1),
-                                 size: CGSize(width: size.width, height: waterTop))
-        water.anchorPoint = CGPoint(x: 0.5, y: 1)
-        water.position = CGPoint(x: size.width / 2, y: waterTop)
-        water.zPosition = -1
-        addChild(water)
+        // Separate sky and water images: generated art can't be told where
+        // the horizon goes, but the waterline is a fixed fraction of height.
+        addBackdrop("bg_fishing_water.jpg", in: CGRect(x: 0, y: 0, width: size.width, height: waterTop))
+        addBackdrop("bg_fishing_sky.jpg",
+                    in: CGRect(x: 0, y: waterTop, width: size.width, height: size.height - waterTop))
 
         // Rowboat straddling the waterline; the fisher stands on its deck.
         let boat = FishingStyle.makeBoat()
@@ -79,14 +81,15 @@ final class FishingScene: MiniGameScene {
         fisher.position = CGPoint(x: size.width / 2, y: waterTop + 6 + 19)
         fisher.zPosition = 2
         addChild(fisher)
+        addChild(FishingStyle.makeRod(from: CGPoint(x: size.width / 2 + 8, y: waterTop + 16), to: rodTip))
 
         hook.fillColor = .white
         hook.strokeColor = .lightGray
-        hook.position = rodTip
+        hook.position = hookRest
         hook.zPosition = 2
         addChild(hook)
 
-        line.strokeColor = .white
+        line.strokeColor = UIColor(white: 0.1, alpha: 0.6) // white vanished against the pale sky
         line.lineWidth = 1
         addChild(line)
 
@@ -236,7 +239,7 @@ final class FishingScene: MiniGameScene {
     private func advanceHook(dt: TimeInterval) {
         switch state {
         case .idle:
-            hook.position = rodTip
+            hook.position = hookRest
         case .casting(let target):
             // Dropping the line never catches — fish only hook while the
             // hook rests in place or on the reel back up.
@@ -247,9 +250,9 @@ final class FishingScene: MiniGameScene {
         case .waiting:
             break // the resting hook never catches — only the reel-up does
         case .reeling:
-            moveHook(toward: rodTip, speed: T.reelSpeed, dt: dt)
+            moveHook(toward: hookRest, speed: T.reelSpeed, dt: dt)
             checkContact()
-            if hook.position.distance(to: rodTip) < 3 {
+            if hook.position.distance(to: hookRest) < 3 {
                 resolveCatch()
             }
         }
@@ -291,7 +294,7 @@ final class FishingScene: MiniGameScene {
     /// The hook is back at the surface — settle every fish on the line.
     private func resolveCatch() {
         state = .idle
-        hook.position = rodTip
+        hook.position = hookRest
         let haul = hookedFish
         hookedFish = []
         guard !haul.isEmpty else { return }
@@ -350,7 +353,7 @@ final class FishingScene: MiniGameScene {
 
     private func drawLine() {
         let path = CGMutablePath()
-        path.move(to: CGPoint(x: fisher.position.x, y: fisher.position.y + 10))
+        path.move(to: rodTip)
         path.addLine(to: hook.position)
         line.path = path
     }

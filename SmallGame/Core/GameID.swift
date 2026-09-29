@@ -1,6 +1,6 @@
 import Foundation
 
-/// Stable identifiers for the four mini games.
+/// Stable identifiers for the mini games.
 /// Raw values are persisted as UserDefaults keys (and later Game Center
 /// leaderboard IDs), so they must never change.
 enum GameID: String, CaseIterable, Identifiable {
@@ -8,6 +8,8 @@ enum GameID: String, CaseIterable, Identifiable {
     case shaft
     case fishing
     case snowball
+    case defense
+    case swarm
 
     var id: String { rawValue }
 
@@ -18,6 +20,8 @@ enum GameID: String, CaseIterable, Identifiable {
         case .shaft: LocalizedStringResource("game.shaft.name")
         case .fishing: LocalizedStringResource("game.fishing.name")
         case .snowball: LocalizedStringResource("game.snowball.name")
+        case .defense: LocalizedStringResource("game.defense.name")
+        case .swarm: LocalizedStringResource("game.swarm.name")
         }
     }
 
@@ -29,6 +33,8 @@ enum GameID: String, CaseIterable, Identifiable {
         case .shaft: "bgm_shaft"
         case .fishing: "bgm_fishing"
         case .snowball: "bgm_snowball"
+        case .defense: "bgm_defense"
+        case .swarm: "bgm_swarm"
         }
     }
 
@@ -39,6 +45,8 @@ enum GameID: String, CaseIterable, Identifiable {
         case .shaft: LocalizedStringResource("instructions.shaft")
         case .fishing: LocalizedStringResource("instructions.fishing")
         case .snowball: LocalizedStringResource("instructions.snowball")
+        case .defense: LocalizedStringResource("instructions.defense")
+        case .swarm: LocalizedStringResource("instructions.swarm")
         }
     }
 }

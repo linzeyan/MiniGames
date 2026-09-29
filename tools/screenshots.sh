@@ -39,6 +39,8 @@ shoot 02-tower    -autoplay tower    -tutorial.seen.tower YES
 shoot 03-shaft    -autoplay shaft    -tutorial.seen.shaft YES
 shoot 04-fishing  -autoplay fishing  -tutorial.seen.fishing YES
 shoot 05-snowball -autoplay snowball -tutorial.seen.snowball YES
-shoot 06-settings -showSettings YES
+shoot 06-defense  -autoplay defense  -tutorial.seen.defense YES
+shoot 07-swarm    -autoplay swarm    -tutorial.seen.swarm YES
+shoot 08-settings -showSettings YES
 
 echo "Done. Review every shot before uploading — autoplay is a bot, not a demo."

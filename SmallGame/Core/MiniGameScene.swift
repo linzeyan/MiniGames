@@ -1,6 +1,6 @@
 import SpriteKit
 
-/// Base class for the four game scenes.
+/// Base class for the game scenes.
 /// The scene reports game-over upward via `onGameOver`; SwiftUI
 /// (`GameHostView`) owns navigation, overlays, and score persistence, so
 /// scenes stay focused on gameplay.
@@ -26,5 +26,23 @@ class MiniGameScene: SKScene {
     /// Sized generously to cover the tallest safe-area inset.
     func isUnderPauseButton(_ point: CGPoint) -> Bool {
         point.x > size.width - 88 && point.y > size.height - 124
+    }
+
+    /// Adds a painted backdrop behind gameplay, aspect-filling `rect`
+    /// (default: the whole scene). Crops through the texture rect instead of
+    /// overscaling the node, so a backdrop never bleeds past its rect —
+    /// fishing stacks a sky image directly on top of a water image.
+    func addBackdrop(_ imageName: String, in rect: CGRect? = nil) {
+        let rect = rect ?? CGRect(origin: .zero, size: size)
+        let full = SKTexture(imageNamed: imageName)
+        let imageAspect = full.size().width / full.size().height
+        let rectAspect = rect.width / rect.height
+        let crop = imageAspect > rectAspect
+            ? CGRect(x: (1 - rectAspect / imageAspect) / 2, y: 0, width: rectAspect / imageAspect, height: 1)
+            : CGRect(x: 0, y: (1 - imageAspect / rectAspect) / 2, width: 1, height: imageAspect / rectAspect)
+        let node = SKSpriteNode(texture: SKTexture(rect: crop, in: full), size: rect.size)
+        node.position = CGPoint(x: rect.midX, y: rect.midY)
+        node.zPosition = -10
+        addChild(node)
     }
 }

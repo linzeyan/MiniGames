@@ -13,8 +13,8 @@ settings:
     # New-app default in Xcode 26; keeps SwiftUI/SpriteKit code free of
     # explicit @MainActor annotations.
     SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
-    MARKETING_VERSION: 1.0.0
-    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 1.1.0
+    CURRENT_PROJECT_VERSION: 2
     # Sandboxed run scripts cannot read sources, which breaks the SwiftLint phase.
     ENABLE_USER_SCRIPT_SANDBOXING: "NO"
 

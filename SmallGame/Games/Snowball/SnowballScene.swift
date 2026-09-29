@@ -82,6 +82,7 @@ final class SnowballScene: MiniGameScene {
     }
 
     private func setUp() {
+        addBackdrop("bg_snowball.jpg")
         hpLabel.fontSize = 20
         hpLabel.fontColor = .systemRed
         hpLabel.horizontalAlignmentMode = .left

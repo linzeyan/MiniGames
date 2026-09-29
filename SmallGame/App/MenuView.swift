@@ -26,7 +26,6 @@ struct MenuView: View {
                                 }
                                 .buttonStyle(.plain)
                             }
-                            ComingSoonCard()
                         }
                     }
                     .padding(20)
@@ -84,6 +83,8 @@ struct MenuView: View {
             case .shaft: ShaftScene(size: size)
             case .fishing: FishingScene(size: size)
             case .snowball: SnowballScene(size: size)
+            case .defense: DefenseScene(size: size)
+            case .swarm: SwarmScene(size: size)
             }
         }
     }
@@ -110,13 +111,20 @@ private struct GameCard: View {
                 .font(.system(.caption, design: .rounded))
                 .foregroundStyle(.white.opacity(0.75))
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 24)
-        .background(
-            RoundedRectangle(cornerRadius: 22)
-                .fill(LinearGradient(colors: game.accentColors,
-                                     startPoint: .topLeading, endPoint: .bottomTrailing))
-        )
+        .frame(maxWidth: .infinity, minHeight: 220)
+        .shadow(color: .black.opacity(0.35), radius: 3, y: 1)
+        // The game's own backdrop previews the scene. Top-aligned: backdrops
+        // keep their centers empty for gameplay, so the moon / cave mouth /
+        // water surface / tree line all sit at the top. The accent wash plus
+        // the text shadow keep white text legible on the pale snow art.
+        .background(alignment: .top) {
+            Image(uiImage: UIImage(named: game.backdrop) ?? UIImage())
+                .resizable()
+                .scaledToFill()
+                .overlay(LinearGradient(colors: game.accentColors.map { $0.opacity(0.7) },
+                                        startPoint: .topLeading, endPoint: .bottomTrailing))
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 22))
         .overlay(
             RoundedRectangle(cornerRadius: 22)
                 .stroke(.white.opacity(0.18), lineWidth: 1)
@@ -124,38 +132,7 @@ private struct GameCard: View {
     }
 }
 
-/// Placeholder tile promising more games. Deliberately inert — it matches the
-/// game cards in size so the grid stays even, but nothing happens on tap.
-private struct ComingSoonCard: View {
-    var body: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "hammer.fill")
-                .font(.system(size: 40))
-                .foregroundStyle(.white.opacity(0.45))
-                .frame(height: 56)
-            Text("menu.coming_soon")
-                .font(.system(.headline, design: .rounded))
-                .foregroundStyle(.white.opacity(0.7))
-            Text("menu.coming_soon.note")
-                .font(.system(.caption, design: .rounded))
-                .foregroundStyle(.white.opacity(0.5))
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 24)
-        .background(
-            RoundedRectangle(cornerRadius: 22)
-                .fill(LinearGradient(colors: [.white.opacity(0.16), .white.opacity(0.07)],
-                                     startPoint: .topLeading, endPoint: .bottomTrailing))
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 22)
-                .strokeBorder(.white.opacity(0.15), style: StrokeStyle(lineWidth: 1, dash: [6, 4]))
-        )
-        .allowsHitTesting(false)
-    }
-}
-
-private extension GameID {
+extension GameID {
     /// Bundled sprite shown on the menu card.
     var menuSprite: String {
         switch self {
@@ -163,6 +140,20 @@ private extension GameID {
         case .shaft: "tile_spikes"
         case .fishing: "octopus"
         case .snowball: "enemy_stand"
+        case .defense: "def_slingshot"
+        case .swarm: "item_swatter"
+        }
+    }
+
+    /// Scene backdrop reused as the card art (fishing shows its water half).
+    var backdrop: String {
+        switch self {
+        case .tower: "bg_tower.jpg"
+        case .shaft: "bg_shaft.jpg"
+        case .fishing: "bg_fishing_water.jpg"
+        case .snowball: "bg_snowball.jpg"
+        case .defense: "bg_defense.jpg"
+        case .swarm: "bg_swarm.jpg"
         }
     }
 
@@ -173,6 +164,8 @@ private extension GameID {
         case .shaft: [Color(red: 0.3, green: 0.52, blue: 0.32), Color(red: 0.16, green: 0.36, blue: 0.2)]
         case .fishing: [Color(red: 0.2, green: 0.48, blue: 0.72), Color(red: 0.1, green: 0.28, blue: 0.5)]
         case .snowball: [Color(red: 0.45, green: 0.58, blue: 0.74), Color(red: 0.28, green: 0.4, blue: 0.58)]
+        case .defense: [Color(red: 0.42, green: 0.6, blue: 0.28), Color(red: 0.24, green: 0.4, blue: 0.16)]
+        case .swarm: [Color(red: 0.3, green: 0.36, blue: 0.5), Color(red: 0.14, green: 0.2, blue: 0.3)]
         }
     }
 }

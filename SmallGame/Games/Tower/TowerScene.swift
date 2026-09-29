@@ -90,6 +90,7 @@ final class TowerScene: MiniGameScene {
     }
 
     private func setUp() {
+        addBackdrop("bg_tower.jpg")
         floorLabel.fontSize = 20
         floorLabel.horizontalAlignmentMode = .left
         floorLabel.position = CGPoint(x: 16, y: size.height - 60)

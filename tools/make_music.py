@@ -1,4 +1,4 @@
-"""Synthesize the five looping BGM tracks (all original, no licensing).
+"""Synthesize the looping BGM tracks (all original, no licensing).
 
 One soft track for the menu plus a tighter, faster one per game, so each
 screen has its own mood. SFX live in make_audio.py; this script owns
@@ -153,7 +153,49 @@ def snowball():
     return buf
 
 
+# --- Defense: bouncy pentatonic schoolyard chant over an oom-pah bass. ---
+def defense():
+    bpm, bars = 120, 8
+    buf, beat = make_buffer(bpm, bars)
+    chant = [72, 69, 67, 69, 72, 74, 76, 74,
+             72, 69, 67, 64, 67, 69, 67, None]
+    for bar in range(bars):
+        for step in range(8):
+            note = chant[(bar % 2) * 8 + step]
+            if note is not None:
+                tone(buf, (bar * 4 + step * 0.5) * beat, beat * 0.35, note,
+                     vol=0.13, wave_fn=lambda t, f: square(t, f, 0.25))
+        root = [48, 48, 53, 55][bar % 4]
+        for beat_index in range(4):
+            tone(buf, (bar * 4 + beat_index) * beat, beat * 0.4,
+                 root + (0 if beat_index % 2 == 0 else 7), vol=0.15, wave_fn=triangle)
+            hit(buf, (bar * 4 + beat_index + 0.5) * beat, 0.04, vol=0.05)
+    return buf
+
+
+# --- Swarm: fast minor arpeggios that never let up. ---
+def swarm():
+    bpm, bars = 160, 8
+    buf, beat = make_buffer(bpm, bars)
+    minor, major = [0, 3, 7, 12, 7, 3, 0, 3], [0, 4, 7, 12, 7, 4, 0, 4]
+    chords = [(57, minor), (57, minor), (53, major), (55, major),
+              (57, minor), (57, minor), (50, minor), (52, major)]
+    for bar, (root, shape) in enumerate(chords):
+        for step, offset in enumerate(shape):
+            tone(buf, (bar * 4 + step * 0.5) * beat, beat * 0.4, root + offset,
+                 vol=0.12, wave_fn=lambda t, f: square(t, f, 0.25))
+            tone(buf, (bar * 4 + step * 0.5) * beat, beat * 0.4, root - 24,
+                 vol=0.13, wave_fn=triangle)
+        for beat_index in range(4):
+            hit(buf, (bar * 4 + beat_index) * beat, 0.05 if beat_index % 2 == 0 else 0.09,
+                vol=0.07 if beat_index % 2 == 0 else 0.12)
+    return buf
+
+
+# New tracks go last: noise() carries state across tracks, so inserting one
+# earlier would change every track after it.
 for track_name, builder in [("bgm_menu", menu), ("bgm_tower", tower),
                             ("bgm_shaft", shaft), ("bgm_fishing", fishing),
-                            ("bgm_snowball", snowball)]:
+                            ("bgm_snowball", snowball), ("bgm_defense", defense),
+                            ("bgm_swarm", swarm)]:
     write_wav(track_name, builder())

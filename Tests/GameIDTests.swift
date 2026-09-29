@@ -9,6 +9,8 @@ struct GameIDTests {
         #expect(GameID.shaft.rawValue == "shaft")
         #expect(GameID.fishing.rawValue == "fishing")
         #expect(GameID.snowball.rawValue == "snowball")
-        #expect(GameID.allCases.count == 4)
+        #expect(GameID.defense.rawValue == "defense")
+        #expect(GameID.swarm.rawValue == "swarm")
+        #expect(GameID.allCases.count == 6)
     }
 }

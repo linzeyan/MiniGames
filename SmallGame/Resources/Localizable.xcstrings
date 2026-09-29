@@ -86,6 +86,22 @@
         }
       }
     },
+    "defense.wave %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wave %lld — here they come!"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第 %lld 波　蟲蟲大軍來了！"
+          }
+        }
+      }
+    },
     "fishing.bite" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -219,6 +235,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最高分：%lld"
+          }
+        }
+      }
+    },
+    "game.defense.name" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunchbox Defense"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保衛便當"
           }
         }
       }
@@ -374,6 +406,22 @@
         }
       }
     },
+    "game.swarm.name" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bug Swarm"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "蟲海求生"
+          }
+        }
+      }
+    },
     "game.tower.name" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -387,6 +435,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一路向上"
+          }
+        }
+      }
+    },
+    "hint.defense" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap a card, then a lawn square"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點下方卡片，再點草地放下去"
           }
         }
       }
@@ -441,6 +505,22 @@
         }
       }
     },
+    "hint.swarm" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slide anywhere to move"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按住任一處滑動走位，攻擊是自動的"
+          }
+        }
+      }
+    },
     "hint.tower" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -454,6 +534,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按住蓄力、左右滑動移動，放開起跳"
+          }
+        }
+      }
+    },
+    "instructions.defense" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Bugs crawl down five lanes toward your lunchbox\n• Tap a card, then a lawn square to place it — it costs coins\n• Piggy banks save coins, slingshots fire marbles, schoolbags block, firecrackers blast a whole block\n• Each lane's slipper saves you once; the next bug through ends the run\n• Bugs get more numerous and tougher — squash as many as you can"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• 蟲蟲沿著五條路往下爬，目標是你的便當\n• 點下方卡片、再點草地格子放下，要花零用錢\n• 撲滿會存錢、彈弓射彈珠、書包擋路、鞭炮炸開一整片\n• 每條路底的藍白拖能救一次，再有蟲爬到底就結束\n• 蟲會越來越多、越來越硬，打倒越多分數越高"
           }
         }
       }
@@ -508,6 +604,22 @@
         }
       }
     },
+    "instructions.swarm" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Touch anywhere and slide the way you want to go\n• Your weapons attack on their own — just keep moving\n• Grab the candy bugs drop; each level up picks one of three upgrades\n• A bug touching you costs a heart — lose them all and it is over\n• The longer you last, the more bugs come — squash as many as you can"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• 按住畫面任一處，往想去的方向滑動走位\n• 武器會自動攻擊，你只要專心閃躲\n• 撿起蟲蟲掉的糖果累積經驗，升級時三選一強化\n• 被蟲碰到扣一顆心，扣完就結束\n• 撐越久蟲越多，打倒越多分數越高"
+          }
+        }
+      }
+    },
     "instructions.tower" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -539,38 +651,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最高分 %lld"
-          }
-        }
-      }
-    },
-    "menu.coming_soon" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coming Soon"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "敬請期待"
-          }
-        }
-      }
-    },
-    "menu.coming_soon.note" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New games in progress"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新遊戲開發中"
           }
         }
       }
@@ -955,6 +1035,182 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "第 %lld 關"
+          }
+        }
+      }
+    },
+    "swarm.bun" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meat Bun"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "肉包"
+          }
+        }
+      }
+    },
+    "swarm.bun.detail" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore one heart"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復一顆心"
+          }
+        }
+      }
+    },
+    "swarm.level_up" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Level up! Pick one"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "升級！選一個"
+          }
+        }
+      }
+    },
+    "swarm.marbles" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marbles"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "彈珠"
+          }
+        }
+      }
+    },
+    "swarm.marbles.detail" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fires at the nearest bugs"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "射向最近的蟲，越升越多顆"
+          }
+        }
+      }
+    },
+    "swarm.sneakers" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sneakers"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "球鞋"
+          }
+        }
+      }
+    },
+    "swarm.sneakers.detail" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run faster"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跑得更快"
+          }
+        }
+      }
+    },
+    "swarm.swatter" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bug Zapper"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "電蚊拍"
+          }
+        }
+      }
+    },
+    "swarm.swatter.detail" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaps every bug around you"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定時電擊身邊所有的蟲"
+          }
+        }
+      }
+    },
+    "swarm.tops" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spinning Tops"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "陀螺"
+          }
+        }
+      }
+    },
+    "swarm.tops.detail" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circle you and hit bugs"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繞著你轉，撞到蟲就痛"
           }
         }
       }

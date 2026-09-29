@@ -18,3 +18,4 @@ art-src/
 # SwiftPM
 .build/
 .swiftpm/
+__pycache__

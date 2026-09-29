@@ -97,6 +97,7 @@ final class ShaftScene: MiniGameScene {
     }
 
     private func setUp() {
+        addBackdrop("bg_shaft.jpg")
         ceiling.size = CGSize(width: size.width, height: T.ceilingHeight)
         ceiling.position = CGPoint(x: size.width / 2, y: size.height - T.ceilingHeight / 2)
         ceiling.zRotation = .pi // spikes point downward
